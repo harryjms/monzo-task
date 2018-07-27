@@ -7,7 +7,9 @@ interface Color {
 
 interface MonzoColors {
   blue: string;
+  darkerBlue: string;
   lightBlue: string;
+  lighterBlue: string;
   soft: string;
 }
 
@@ -54,7 +56,9 @@ export const colors: Colors = {
   },
   monzo: {
     blue: '#15233c',
+    darkerBlue: '#0080ab',
     lightBlue: '#00a4db',
+    lighterBlue: '#00a4dbb0',
     soft: '#f5f5f5',
   },
 };

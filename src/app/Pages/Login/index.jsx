@@ -1,4 +1,5 @@
 //@flow
+import Button from 'Components/Button/index.jsx';
 import TextField from 'Components/TextField/index.jsx';
 import React from 'react';
 import injectSheet from 'react-jss';
@@ -24,8 +25,6 @@ const styles = (theme: Theme) => ({
   },
   form: {
     backgroundColor: 'white',
-    margin: '0 auto',
-    marginTop: 50,
     width: 500,
   },
   header: {
@@ -38,9 +37,19 @@ const styles = (theme: Theme) => ({
   },
   h1: {
     margin: 0,
+    marginBottom: 10,
+  },
+  p: {
+    margin: 0,
   },
   logo: {
     width: 50,
+  },
+  page: {
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -51,7 +60,9 @@ type ClassName =
   | 'form'
   | 'header'
   | 'h1'
-  | 'logo';
+  | 'logo'
+  | 'page'
+  | 'p';
 
 interface LoginProps {
   classes: { [key: ClassName]: Object };
@@ -73,33 +84,39 @@ class Login extends React.Component<LoginProps, {}> {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.form}>
-        <div className={classes.connect_head}>
-          <div className={classes.logo}>
-            <img src={logo} style={{ width: '100%' }} />
+      <div className={classes.page}>
+        <div className={classes.form}>
+          <div className={classes.connect_head}>
+            <div className={classes.logo}>
+              <img src={logo} style={{ width: '100%' }} />
+            </div>
+            <div className={classes.connect_text}>Connect</div>
           </div>
-          <div className={classes.connect_text}>Connect</div>
-        </div>
-        <div className={classes.header}>
-          <h1 className={classes.h1}>Developer Portal</h1>
-          <p>Please login to continue to the Monzo Developer Portal.</p>
-        </div>
-        <div className={classes.body}>
-          <TextField
-            label="Email Address"
-            name="email"
-            onChange={console.log}
-            placeholder="name@monzo.com"
-            inputRef={n => (this.textUsername = n)}
-          />
-          <TextField
-            label="Password"
-            name="password"
-            onChange={console.log}
-            placeholder="Password"
-            style={{ marginTop: 20 }}
-            secure={true}
-          />
+          <div className={classes.header}>
+            <h1 className={classes.h1}>Developer Portal</h1>
+            <p className={classes.p}>
+              Please login to continue to the Monzo Developer Portal.
+            </p>
+          </div>
+          <div className={classes.body}>
+            <TextField
+              label="Email Address"
+              name="email"
+              onChange={console.log}
+              placeholder="name@monzo.com"
+              inputRef={n => (this.textUsername = n)}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              onChange={console.log}
+              placeholder="Password"
+              style={{ marginTop: 20 }}
+              secure={true}
+            />
+            <br />
+            <Button label="Login" />
+          </div>
         </div>
       </div>
     );

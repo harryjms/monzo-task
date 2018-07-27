@@ -1,4 +1,5 @@
 interface TransitionDuration {
+  fast: string;
   standard: string;
   slow: string;
 }
@@ -14,6 +15,7 @@ export interface Transitions {
 
 export const transitions: Transitions = {
   duration: {
+    fast: '0.1s',
     standard: '0.2s',
     slow: '0.8s',
   },

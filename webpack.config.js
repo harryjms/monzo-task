@@ -6,23 +6,34 @@ module.exports = {
   mode: 'development',
   entry: './src/app/index.jsx',
   output: {
-    filename: 'app.bundle.js'
+    filename: 'app.bundle.js',
   },
   module: {
     rules: [
       {
+        test: /\.(png|jpg|jpeg|gif)$/,
+        loader: 'file-loader',
+      },
+      {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
-      }
-    ]
+        loader: 'babel-loader',
+      },
+    ],
+  },
+  resolve: {
+    alias: {
+      Components: path.join(__dirname, '/src/app/Components'),
+      images: path.join(__dirname, '/src/images'),
+      theme: path.join(__dirname, '/src/app/Theme/index.js'),
+    },
   },
   plugins: [
     new FlowBabelWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       inject: 'body',
-      template: path.join(__dirname, 'src/html/index.html')
-    })
-  ]
+      template: path.join(__dirname, 'src/html/index.html'),
+    }),
+  ],
 };

@@ -8,5 +8,8 @@
 [lints]
 
 [options]
+module.name_mapper='^Components' ->'<PROJECT_ROOT>/src/app/Components'
+module.name_mapper='^images' ->'<PROJECT_ROOT>/src/images'
+module.name_mapper='^theme' ->'<PROJECT_ROOT>/src/app/Theme/index.js'
 
 [strict]

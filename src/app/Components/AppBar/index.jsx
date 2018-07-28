@@ -3,8 +3,9 @@ import React from 'react';
 import injectSheet from 'react-jss';
 import Content from '../Content/index.jsx';
 import { Theme } from '../../Theme';
+import type { ChangePageFunc } from '../../Pages/App/index.jsx';
 
-type ClassNames = 'bar';
+type ClassNames = 'bar' | 'title';
 
 const styles = (theme: Theme) => ({
     bar: {
@@ -12,10 +13,17 @@ const styles = (theme: Theme) => ({
         color: 'white',
         padding: 20,
     },
+    title: {
+        '&:hover': {
+            textDecoration: 'underline',
+        },
+        cursor: 'pointer',
+    },
 });
 
 interface AppBarProps {
     classes: { [key: ClassNames]: string };
+    changePage: ChangePageFunc;
 }
 
 class AppBar extends React.Component<AppBarProps, {}> {
@@ -23,7 +31,13 @@ class AppBar extends React.Component<AppBarProps, {}> {
         const { classes } = this.props;
         return (
             <div className={classes.bar}>
-                <Content>Developer Portal</Content>
+                <Content>
+                    <span
+                        className={classes.title}
+                        onClick={() => this.props.changePage('home')}>
+                        Developer Portal
+                    </span>
+                </Content>
             </div>
         );
     }

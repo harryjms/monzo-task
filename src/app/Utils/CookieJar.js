@@ -26,4 +26,4 @@ const deleteCookie = (key: string): void => {
     document.cookie = `${key}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
 
-export default { setCookie, getCookie };
+export default { setCookie, getCookie, deleteCookie };

@@ -9,7 +9,9 @@
     "build": "NODE_ENV=production ./node_modules/.bin/webpack"
   },
   "dependencies": {
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-jss": "^8.6.1",

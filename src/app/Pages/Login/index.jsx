@@ -7,6 +7,9 @@ import { Theme, CombineClasses } from 'theme';
 import logo from 'images/monzo-logo.png';
 import { Event } from '../../../../node_modules/chrome-trace-event';
 import MonzoAPI from '../../API';
+import CookieJar from '../../Utils/CookieJar';
+import jwtDecode from 'jwt-decode';
+import moment from 'moment';
 
 const styles = (theme: Theme) => ({
     body: {
@@ -148,7 +151,13 @@ class Login extends React.Component<LoginProps, LoginState> {
         this._handleBusyToggle();
         MonzoAPI.login(this.state.username, this.state.password)
             .then(res => {
-                this.setState({ success: true, error: false, busy: false });
+                const tokenValues = jwtDecode(res.accessToken);
+                CookieJar.setCookie(
+                    'authToken',
+                    res.accessToken,
+                    moment.unix(tokenValues.exp),
+                );
+                window.location = window.location;
             })
             .catch(err => {
                 console.error(err);

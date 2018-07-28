@@ -1,7 +1,12 @@
 //@flow
 import { post } from './_requestMethods';
 
-export type Login = (email: string, password: string) => Promise<boolean>;
+interface LoginShape {
+    accessToken?: string;
+    error?: string;
+}
+
+export type Login = (email: string, password: string) => Promise<LoginShape>;
 const login: Login = (email, password) =>
     new Promise((resolve, reject) => {
         post('/login', { email, password })

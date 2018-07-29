@@ -24,6 +24,10 @@ const styles = (theme: Theme) => ({
         display: 'flex',
         width: '100%',
     },
+    error: {
+        color: theme.colors.red.normal,
+        marginTop: 10,
+    },
     form: {
         backgroundColor: 'white',
         width: 500,
@@ -80,6 +84,7 @@ const styles = (theme: Theme) => ({
 type ClassName =
     | 'body'
     | 'connect_head'
+    | 'error'
     | 'form'
     | 'header'
     | 'h1'
@@ -143,6 +148,7 @@ class Login extends React.Component<LoginProps, LoginState> {
 
     _handleLogin = () => {
         this._handleBusyToggle();
+        this.setState({ error: false });
         MonzoAPI.login(this.state.username, this.state.password)
             .then(res => {
                 const tokenValues = jwtDecode(res.accessToken);
@@ -203,6 +209,11 @@ class Login extends React.Component<LoginProps, LoginState> {
                                 value={this.state.password}
                                 secure={true}
                             />
+                            {this.state.error && (
+                                <div className={classes.error}>
+                                    👎 Please check your username and password
+                                </div>
+                            )}
                             <br />
                             <Button label="Login" onClick={this._handleLogin} />
                         </div>
@@ -219,5 +230,4 @@ class Login extends React.Component<LoginProps, LoginState> {
         );
     }
 }
-
 export default injectSheet(styles)(Login);

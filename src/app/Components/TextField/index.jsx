@@ -49,6 +49,7 @@ interface TextFieldProps {
     placeholder?: string;
     value?: string;
     onChange: (event: Event) => void;
+    onEnterKey: (event: Event) => void;
     secure?: boolean;
     inputStyle?: Object;
     style?: Object;
@@ -105,6 +106,11 @@ class TextField extends React.Component<TextFieldProps, TextFieldState> {
         });
     };
 
+    _onEnterKey = (event: Event) => {
+        const { onEnterKey } = this.props;
+        if (onEnterKey) onEnterKey(event);
+    };
+
     _onFocus = () => {
         this.setState((prevState: TextFieldState) => ({
             focus: !prevState.focus,
@@ -147,6 +153,11 @@ class TextField extends React.Component<TextFieldProps, TextFieldState> {
                     onBlur={this._onFocus}
                     id={`TextField_${name}`}
                     name={name}
+                    onKeyUp={e => {
+                        if (e.keyCode === 13) {
+                            this._onEnterKey(e);
+                        }
+                    }}
                 />
             </div>
         );

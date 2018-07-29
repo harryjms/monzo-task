@@ -148,6 +148,9 @@ class AppDetails extends React.Component<AppDetailsProps, AppDetailsState> {
 
     _doSave = (): void => {
         this.setState({ saving: true });
+        if (!CookieJar.getCookie('authToken')) {
+            window.location = window.location;
+        }
         const {
             details: { id, name, logo },
         } = this.state;

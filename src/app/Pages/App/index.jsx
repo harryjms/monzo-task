@@ -19,6 +19,7 @@ class App extends React.Component<{}, AppState> {
     constructor(props: {}) {
         super(props);
         this.authToken = CookieJar.getCookie('authToken');
+
         this.state = {
             page: <AppList />,
         };
@@ -32,6 +33,11 @@ class App extends React.Component<{}, AppState> {
 
     _handlePageChange = (page: string, params?: Object): void => {
         let comp: React.Node;
+
+        if (!CookieJar.getCookie('authToken')) {
+            window.location = window.location;
+            return;
+        }
 
         switch (page) {
             case 'home':

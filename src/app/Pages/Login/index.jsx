@@ -24,11 +24,6 @@ const styles = (theme: Theme) => ({
         display: 'flex',
         width: '100%',
     },
-    connect_text: {
-        fontSize: '15pt',
-        fontWeight: 'bold',
-        marginLeft: 10,
-    },
     form: {
         backgroundColor: 'white',
         width: 500,
@@ -85,7 +80,6 @@ const styles = (theme: Theme) => ({
 type ClassName =
     | 'body'
     | 'connect_head'
-    | 'connect_text'
     | 'form'
     | 'header'
     | 'h1'
@@ -179,7 +173,6 @@ class Login extends React.Component<LoginProps, LoginState> {
                         <div className={classes.logo}>
                             <img src={logo} style={{ width: '100%' }} />
                         </div>
-                        <div className={classes.connect_text}>Connect</div>
                     </div>
                     <div className={classes.header}>
                         <h1 className={classes.h1}>Developer Portal</h1>

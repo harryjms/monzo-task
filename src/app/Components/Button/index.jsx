@@ -7,11 +7,15 @@ type ClassNames = 'button';
 
 const styles = (theme: Theme) => ({
     button: {
-        '&:active': {
+        '&:active:not([disabled])': {
             backgroundColor: theme.colors.monzo.lightBlue + ' !important',
         },
-        '&:hover': {
+        '&:hover:not([disabled])': {
             backgroundColor: theme.colors.monzo.lighterBlue,
+        },
+        '&[disabled]': {
+            opacity: 0.5,
+            cursor: 'default',
         },
         backgroundColor: theme.colors.monzo.lightBlue,
         borderRadius: theme.borders.radius,
@@ -31,6 +35,7 @@ interface ButtonProps {
     classes: { [k: ClassNames]: Object };
     label: string;
     onClick: (event: Event) => void;
+    disabled: boolean;
 }
 
 class Button extends React.Component<ButtonProps, {}> {
@@ -39,9 +44,14 @@ class Button extends React.Component<ButtonProps, {}> {
     }
 
     render() {
-        const { classes, label, onClick } = this.props;
+        const { classes, label, onClick, disabled } = this.props;
         return (
-            <div className={classes.button} onClick={onClick}>
+            <div
+                className={classes.button}
+                onClick={(event: Event): void => {
+                    !disabled && onClick(event);
+                }}
+                disabled={disabled}>
                 {label}
             </div>
         );

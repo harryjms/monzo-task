@@ -31,6 +31,28 @@ export const post = (url: string, body: Object): Promise<Object> => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: jwt,
+            },
+            body: JSON.stringify(body),
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    resolve(res);
+                } else {
+                    reject(res);
+                }
+            })
+            .catch(reject),
+    );
+};
+
+export const put = (url: string, body: Object): Promise<Object> => {
+    return new Promise((resolve, reject) =>
+        fetch(apiURL + url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: jwt,
             },
             body: JSON.stringify(body),
         })

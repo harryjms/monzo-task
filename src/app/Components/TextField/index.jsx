@@ -146,6 +146,7 @@ class TextField extends React.Component<TextFieldProps, TextFieldState> {
                     onFocus={this._onFocus}
                     onBlur={this._onFocus}
                     id={`TextField_${name}`}
+                    name={name}
                 />
             </div>
         );

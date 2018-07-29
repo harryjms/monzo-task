@@ -199,6 +199,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                                 placeholder="name@monzo.com"
                                 value={this.state.username}
                                 inputRef={n => (this.textUsername = n)}
+                                onEnterKey={this._handleLogin}
                             />
                             <TextField
                                 label="Password"
@@ -208,10 +209,11 @@ class Login extends React.Component<LoginProps, LoginState> {
                                 style={{ marginTop: 20 }}
                                 value={this.state.password}
                                 secure={true}
+                                onEnterKey={this._handleLogin}
                             />
                             {this.state.error && (
                                 <div className={classes.error}>
-                                    👎 Please check your username and password
+                                    Please check your username and password 👎
                                 </div>
                             )}
                             <br />

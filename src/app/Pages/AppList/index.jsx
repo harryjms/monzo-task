@@ -8,6 +8,7 @@ import MonzoAPI from '../../API/index.js';
 import moment from 'moment';
 import { AppObject } from '../../API/getAppList.js';
 import CookieJar from '../../Utils/CookieJar';
+import type { ChangePageFunc } from '../App/index.jsx';
 
 type ClassNames = 'h1' | 'a' | 'image' | 'root' | 'table' | 'th' | 'td' | 'tr';
 
@@ -42,6 +43,7 @@ const styles = (theme: Theme) => ({
 
 interface AppListProps {
     classes: { [key: ClassNames]: string };
+    changePage: ChangePageFunc;
 }
 
 interface AppListState {
@@ -122,7 +124,14 @@ class AppList extends React.Component<AppListProps, AppListState> {
                                                 )}
                                             </td>
                                             <td className={classes.td}>
-                                                <span className={classes.a}>
+                                                <span
+                                                    className={classes.a}
+                                                    onClick={() =>
+                                                        this.props.changePage(
+                                                            'details',
+                                                            { appDetails: app },
+                                                        )
+                                                    }>
                                                     Edit
                                                 </span>
                                             </td>

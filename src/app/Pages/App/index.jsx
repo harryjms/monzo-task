@@ -32,12 +32,13 @@ class App extends React.Component<{}, AppState> {
 
     _handlePageChange = (page: string, params?: Object): void => {
         let comp: React.Node;
+
         switch (page) {
             case 'home':
                 comp = <AppList />;
                 break;
             case 'details':
-                comp = <AppDetails appId={params && params.appId} />;
+                comp = <AppDetails app={params && params.appDetails} />;
                 break;
             default:
                 comp = <Login />;

@@ -80,6 +80,7 @@ const styles = (theme: Theme) => ({
     userWrap: {
         display: 'flex',
         alignItems: 'center',
+        height: 50,
     },
     userAvatar: {
         width: 50,

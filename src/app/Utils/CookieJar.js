@@ -12,14 +12,19 @@ const setCookie = (key: string, value: any, expires: string = ''): void => {
 };
 
 const getCookie = (key: string): any => {
-    const jar = decodeURIComponent(document.cookie);
-    const cookie = key + '=';
-    const found = jar.split(';').filter(c => c.indexOf(cookie) === 0)[0];
-    if (found) {
-        return found.substr(cookie.length, found.length);
-    } else {
-        return;
+    var name = key + '=';
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
     }
+    return '';
 };
 
 const deleteCookie = (key: string): void => {
